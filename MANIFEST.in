@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include agnikul *.css
+recursive-include agnikul *.csv
+recursive-include agnikul *.html
+recursive-include agnikul *.ico
+recursive-include agnikul *.js
+recursive-include agnikul *.json
+recursive-include agnikul *.md
+recursive-include agnikul *.png
+recursive-include agnikul *.py
+recursive-include agnikul *.svg
+recursive-include agnikul *.txt
+recursive-exclude agnikul *.pyc

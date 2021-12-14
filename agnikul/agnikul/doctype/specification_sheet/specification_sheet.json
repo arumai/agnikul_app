@@ -9,6 +9,8 @@
   "item",
   "column_break_2",
   "specification_version",
+  "enhanced_specification",
+  "base_specification",
   "application_section",
   "non_cryo",
   "cryo",
@@ -77,11 +79,24 @@
   {
    "fieldname": "column_break_2",
    "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "enhanced_specification",
+   "fieldtype": "Check",
+   "label": "Enhanced Specification"
+  },
+  {
+   "depends_on": "eval:(doc.enhanced_specification == 1)",
+   "fieldname": "base_specification",
+   "fieldtype": "Link",
+   "label": "Base Specification",
+   "options": "Specification Sheet"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-12-12 23:34:08.773894",
+ "modified": "2021-12-14 12:11:04.564044",
  "modified_by": "Administrator",
  "module": "Agnikul",
  "name": "Specification Sheet",

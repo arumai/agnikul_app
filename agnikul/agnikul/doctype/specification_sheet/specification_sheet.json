@@ -1,0 +1,105 @@
+{
+ "actions": [],
+ "autoname": "Spec.#####",
+ "creation": "2021-12-12 17:43:01.939233",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "item",
+  "column_break_2",
+  "specification_version",
+  "application_section",
+  "non_cryo",
+  "cryo",
+  "column_break_5",
+  "oxy",
+  "non_oxy",
+  "section_break_8",
+  "table_9"
+ ],
+ "fields": [
+  {
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "label": "Item",
+   "options": "Item"
+  },
+  {
+   "fieldname": "application_section",
+   "fieldtype": "Section Break",
+   "label": "Application"
+  },
+  {
+   "default": "0",
+   "fieldname": "non_cryo",
+   "fieldtype": "Check",
+   "label": "Non Cryo "
+  },
+  {
+   "default": "0",
+   "fieldname": "cryo",
+   "fieldtype": "Check",
+   "label": "Cryo"
+  },
+  {
+   "default": "0",
+   "fieldname": "oxy",
+   "fieldtype": "Check",
+   "label": "Oxy"
+  },
+  {
+   "default": "0",
+   "fieldname": "non_oxy",
+   "fieldtype": "Check",
+   "label": "Non Oxy"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_8",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "table_9",
+   "fieldtype": "Table",
+   "options": "Specification Sheet Details"
+  },
+  {
+   "fieldname": "specification_version",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Specification Version",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2021-12-12 23:34:08.773894",
+ "modified_by": "Administrator",
+ "module": "Agnikul",
+ "name": "Specification Sheet",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

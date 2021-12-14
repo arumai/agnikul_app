@@ -1,0 +1,89 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2021-12-12 21:45:16.820202",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "domain",
+  "category",
+  "key",
+  "value",
+  "unit",
+  "must_have",
+  "comments",
+  "specifications_by_vendor"
+ ],
+ "fields": [
+  {
+   "columns": 1,
+   "fieldname": "domain",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Domain",
+   "options": "Specification Domain",
+   "reqd": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "category",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Category",
+   "options": "Specification Category"
+  },
+  {
+   "default": "0",
+   "fieldname": "must_have",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Must Have"
+  },
+  {
+   "fieldname": "unit",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Unit",
+   "options": "UOM"
+  },
+  {
+   "fieldname": "comments",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Comments"
+  },
+  {
+   "fieldname": "key",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Key",
+   "options": "Specification Key",
+   "reqd": 1
+  },
+  {
+   "fieldname": "specifications_by_vendor",
+   "fieldtype": "Data",
+   "label": "Specifications By Vendor"
+  },
+  {
+   "fieldname": "value",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Value",
+   "options": "Specification Value",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2021-12-12 22:34:36.091727",
+ "modified_by": "Administrator",
+ "module": "Agnikul",
+ "name": "Specification Sheet Details",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

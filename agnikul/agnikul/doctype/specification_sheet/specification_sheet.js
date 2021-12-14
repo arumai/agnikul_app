@@ -57,53 +57,53 @@ frappe.ui.form.on('Specification Sheet Details', {
 		let row = locals[cdt][cdn];
 		console.log(row)
 	},
-	domain: function (frm, cdt, cdn) {
-		let row = locals[cdt][cdn];
-		console.log(row)
-		frappe.confirm(__("Do you want to add all the categories and keys linked with the domain: "+row.domain+" ?"), function () {
-			frappe.call({
-				method: "frappe.client.get_list",
-				args: {
-					doctype: "Specification Category",
-					fields: ["name"],
-					filters: {"domain": row.domain}
-				},
-				callback: function (r) {
-					if (!r.exc) {
-						for (let index = 0; index < r.message.length; index++) {
-							let element = r.message[index];
-							frappe.call({
-								method: "frappe.client.get_list",
-								args: {
-									doctype: "Specification Key",
-									fields: ["name"],
-									filters: {"domain": row.domain, "category": element.name}
-								},
-								callback: function (r) {
-									if (!r.exc) {
-										for (let i = 0; i < r.message.length; i++) {
-											let key = r.message[i];
-											if (index == 0) {
-												var child = row;
-											} else {
-												var child = frm.add_child("table_9");
-											}
-											child.domain = row.domain
-											child.category = element.name;
-											child.key = key.name;
-										}
-									}
-									frm.refresh_field("table_9");
-								}
+	// domain: function (frm, cdt, cdn) {
+	// 	let row = locals[cdt][cdn];
+	// 	console.log(row)
+	// 	frappe.confirm(__("Do you want to add all the categories and keys linked with the domain: "+row.domain+" ?"), function () {
+	// 		frappe.call({
+	// 			method: "frappe.client.get_list",
+	// 			args: {
+	// 				doctype: "Specification Category",
+	// 				fields: ["name"],
+	// 				filters: {"domain": row.domain}
+	// 			},
+	// 			callback: function (r) {
+	// 				if (!r.exc) {
+	// 					for (let index = 0; index < r.message.length; index++) {
+	// 						let element = r.message[index];
+	// 						frappe.call({
+	// 							method: "frappe.client.get_list",
+	// 							args: {
+	// 								doctype: "Specification Key",
+	// 								fields: ["name"],
+	// 								filters: {"domain": row.domain, "category": element.name}
+	// 							},
+	// 							callback: function (r) {
+	// 								if (!r.exc) {
+	// 									for (let i = 0; i < r.message.length; i++) {
+	// 										let key = r.message[i];
+	// 										if (index == 0) {
+	// 											var child = row;
+	// 										} else {
+	// 											var child = frm.add_child("table_9");
+	// 										}
+	// 										child.domain = row.domain
+	// 										child.category = element.name;
+	// 										child.key = key.name;
+	// 									}
+	// 								}
+	// 								frm.refresh_field("table_9");
+	// 							}
 								
-							})
-						}
+	// 						})
+	// 					}
 						
-					}
-				}
-			})
-		})
-	},
+	// 				}
+	// 			}
+	// 		})
+	// 	})
+	// },
 	category: function (frm, cdt, cdn) {
 		let row = locals[cdt][cdn];
 		frappe.confirm(__("Do you want to add all the key linked with the category: "+row.category+" ?"), function () {

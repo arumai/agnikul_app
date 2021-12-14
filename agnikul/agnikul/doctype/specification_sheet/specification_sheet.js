@@ -81,15 +81,17 @@ frappe.ui.form.on('Specification Sheet Details', {
 								},
 								callback: function (r) {
 									if (!r.exc) {
-										if (index == 0) {
-											var child = row;
-										} else {
-											var child = frm.add_child("table_9");
+										for (let i = 0; i < r.message.length; i++) {
+											let key = r.message[i];
+											if (index == 0) {
+												var child = row;
+											} else {
+												var child = frm.add_child("table_9");
+											}
+											child.domain = row.domain
+											child.category = element.name;
+											child.key = key;
 										}
-										child.domain = row.domain
-										child.category = element.name;
-										child.key = r.message[0].name;
-										
 									}
 									frm.refresh_field("table_9");
 								}

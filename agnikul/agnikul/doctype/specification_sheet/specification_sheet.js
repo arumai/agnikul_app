@@ -90,7 +90,7 @@ frappe.ui.form.on('Specification Sheet Details', {
 											}
 											child.domain = row.domain
 											child.category = element.name;
-											child.key = key;
+											child.key = key.name;
 										}
 									}
 									frm.refresh_field("table_9");

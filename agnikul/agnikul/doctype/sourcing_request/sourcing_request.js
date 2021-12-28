@@ -85,6 +85,12 @@ frappe.ui.form.on('Sourcing Request', {
 			frm.add_custom_button(__('Market Search Statement'), function() {
 				window.open("https://www.google.com/search?q="+frm.doc.requested_item+" suppliers");
 			}, __('Search'));
+			if (frm.doc.sourcing_status == "Already In Inventory") {
+				frm.add_custom_button(__('Create Material Request'), function() {
+					frappe.new_doc('Material Request');
+				});
+			}
+			
 		}
 	}
 });

@@ -22,7 +22,18 @@
   "identified_vendors",
   "amended_from",
   "section_break_12",
-  "table_13"
+  "table_13",
+  "section_break_17",
+  "project_meeting",
+  "preliminary_design_meeting",
+  "critical_design_meeting",
+  "fabrication_level_cdr",
+  "component_level_cdr",
+  "column_break_23",
+  "operational_level_check",
+  "packaging_and_storing_check",
+  "maintenance_check",
+  "test_certification_validation"
  ],
  "fields": [
   {
@@ -125,12 +136,74 @@
    "depends_on": "eval:(doc.sourcing_type == \"Default\")",
    "fieldname": "column_break_9",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_17",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "project_meeting",
+   "fieldtype": "Check",
+   "label": "Project meeting"
+  },
+  {
+   "default": "0",
+   "fieldname": "preliminary_design_meeting",
+   "fieldtype": "Check",
+   "label": "Preliminary design meeting"
+  },
+  {
+   "default": "0",
+   "fieldname": "critical_design_meeting",
+   "fieldtype": "Check",
+   "label": "Critical design meeting"
+  },
+  {
+   "default": "0",
+   "fieldname": "fabrication_level_cdr",
+   "fieldtype": "Check",
+   "label": "Fabrication level CDR"
+  },
+  {
+   "default": "0",
+   "fieldname": "component_level_cdr",
+   "fieldtype": "Check",
+   "label": "Component level CDR"
+  },
+  {
+   "default": "0",
+   "fieldname": "operational_level_check",
+   "fieldtype": "Check",
+   "label": "Operational Level Check"
+  },
+  {
+   "default": "0",
+   "fieldname": "packaging_and_storing_check",
+   "fieldtype": "Check",
+   "label": "Packaging and storing Check"
+  },
+  {
+   "default": "0",
+   "fieldname": "maintenance_check",
+   "fieldtype": "Check",
+   "label": "Maintenance Check"
+  },
+  {
+   "default": "0",
+   "fieldname": "test_certification_validation",
+   "fieldtype": "Check",
+   "label": "Test Certification validation"
+  },
+  {
+   "fieldname": "column_break_23",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2021-12-15 19:50:33.259767",
+ "modified": "2021-12-28 10:22:30.225431",
  "modified_by": "Administrator",
  "module": "Agnikul",
  "name": "Sourcing Request",

@@ -5,6 +5,7 @@ from hashlib import new
 import frappe
 from frappe.model.document import Document
 from pypika import NULL
+from frappe.model.mapper import get_mapped_doc
 
 class SourcingRequest(Document):
 	pass
@@ -67,3 +68,19 @@ def check_inventory_against_spec(spec):
 				u["status"] = "Not Matching"
 				result.append(u)
 	return result
+
+@frappe.whitelist()
+def create_material_request(source_name, target_doc=None):
+	def set_missing_values(source, target):
+		target.append('items', {
+			'item_code': source.requested_item,
+			'qty': source.qty_requested
+		})
+
+	doc = get_mapped_doc("Sourcing Request", source_name, {
+		"Sourcing Request": {
+			"doctype": "Material Request"
+		}
+	}, target_doc, set_missing_values)
+
+	return doc

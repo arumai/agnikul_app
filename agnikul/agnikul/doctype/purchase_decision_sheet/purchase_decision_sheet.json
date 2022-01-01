@@ -1,0 +1,73 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2021-12-31 17:52:36.576148",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sourcing_request",
+  "requested_qty",
+  "approved_qty",
+  "ccdr_clearance_date",
+  "approved_by",
+  "justification_for_approval"
+ ],
+ "fields": [
+  {
+   "fieldname": "sourcing_request",
+   "fieldtype": "Link",
+   "label": "Sourcing Request",
+   "options": "Sourcing Request"
+  },
+  {
+   "fieldname": "requested_qty",
+   "fieldtype": "Read Only",
+   "label": "Requested Qty"
+  },
+  {
+   "fieldname": "approved_qty",
+   "fieldtype": "Float",
+   "label": "Approved Qty"
+  },
+  {
+   "fieldname": "ccdr_clearance_date",
+   "fieldtype": "Date",
+   "label": "CCDR Clearance Date"
+  },
+  {
+   "fieldname": "approved_by",
+   "fieldtype": "Link",
+   "label": "Approved By",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "justification_for_approval",
+   "fieldtype": "Small Text",
+   "label": "Justification for Approval"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2021-12-31 17:52:36.576148",
+ "modified_by": "Administrator",
+ "module": "Agnikul",
+ "name": "Purchase Decision Sheet",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

@@ -87,7 +87,20 @@ frappe.ui.form.on('Sourcing Request', {
 			}, __('Search'));
 			if (frm.doc.sourcing_status == "Already In Inventory") {
 				frm.add_custom_button(__('Create Material Request'), function() {
-					frappe.new_doc('Material Request');
+					if (frm.doc.sourcing_type == "Default") {
+						frappe.model.open_mapped_doc({
+							method: "agnikul.agnikul.doctype.sourcing_request.sourcing_request.create_material_request",
+							frm: frm
+						});
+					} else if (frm.doc.sourcing_type == "Local") {
+						
+					}
+				});
+			}
+			if (frm.doc.sourcing_status == "Waiting for approval") {
+				frm.add_custom_button(__('Approve'), function() {
+					frm.set_value("sourcing_status", "Approved");
+					frm.save();
 				});
 			}
 			

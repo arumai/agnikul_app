@@ -8,6 +8,7 @@
  "engine": "InnoDB",
  "field_order": [
   "sourcing_type",
+  "project",
   "column_break_2",
   "sourcing_status",
   "column_break_4",
@@ -30,10 +31,13 @@
   "fabrication_level_cdr",
   "component_level_cdr",
   "column_break_23",
-  "operational_level_check",
-  "packaging_and_storing_check",
-  "maintenance_check",
-  "test_certification_validation"
+  "bom_meeting",
+  "component_qaqc",
+  "purchase_decision",
+  "section_break_28",
+  "cdr_slide",
+  "critical_design_meeting_report",
+  "data_31"
  ],
  "fields": [
   {
@@ -86,7 +90,7 @@
    "in_preview": 1,
    "in_standard_filter": 1,
    "label": "Sourcing Status",
-   "options": "Waiting for approval\nExisting Component\nAlready In Inventory\nApproved\nNo Enough Data\nProduct Found\nNo Visible Progress\nDeclined",
+   "options": "Waiting for approval\nNew Component\nExisting Component\nAlready In Inventory\nApproved\nNo Enough Data\nProduct Found\nNo Visible Progress\nDeclined",
    "search_index": 1
   },
   {
@@ -172,38 +176,56 @@
    "label": "Component level CDR"
   },
   {
-   "default": "0",
-   "fieldname": "operational_level_check",
-   "fieldtype": "Check",
-   "label": "Operational Level Check"
-  },
-  {
-   "default": "0",
-   "fieldname": "packaging_and_storing_check",
-   "fieldtype": "Check",
-   "label": "Packaging and storing Check"
-  },
-  {
-   "default": "0",
-   "fieldname": "maintenance_check",
-   "fieldtype": "Check",
-   "label": "Maintenance Check"
-  },
-  {
-   "default": "0",
-   "fieldname": "test_certification_validation",
-   "fieldtype": "Check",
-   "label": "Test Certification validation"
-  },
-  {
    "fieldname": "column_break_23",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "project",
+   "fieldtype": "Link",
+   "label": "Project",
+   "options": "Project"
+  },
+  {
+   "default": "0",
+   "fieldname": "bom_meeting",
+   "fieldtype": "Check",
+   "label": "BOM Meeting"
+  },
+  {
+   "default": "0",
+   "fieldname": "component_qaqc",
+   "fieldtype": "Check",
+   "label": "Component QA/QC"
+  },
+  {
+   "default": "0",
+   "fieldname": "purchase_decision",
+   "fieldtype": "Check",
+   "label": "Purchase Decision"
+  },
+  {
+   "fieldname": "section_break_28",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "cdr_slide",
+   "fieldtype": "Attach",
+   "label": "Preliminary design meeting Report"
+  },
+  {
+   "fieldname": "critical_design_meeting_report",
+   "fieldtype": "Data",
+   "label": "Critical design meeting Report"
+  },
+  {
+   "fieldname": "data_31",
+   "fieldtype": "Data"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2021-12-28 10:22:30.225431",
+ "modified": "2021-12-31 18:00:01.363164",
  "modified_by": "Administrator",
  "module": "Agnikul",
  "name": "Sourcing Request",

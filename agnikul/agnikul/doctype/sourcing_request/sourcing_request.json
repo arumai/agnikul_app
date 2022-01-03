@@ -264,9 +264,7 @@
    "fieldname": "project_meeting_report",
    "fieldtype": "Attach",
    "in_list_view": 1,
-   "in_preview": 1,
-   "label": "Project meeting Report",
-   "search_index": 1
+   "label": "Project meeting Report"
   },
   {
    "allow_on_submit": 1,
@@ -312,7 +310,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2022-01-03 15:10:11.250122",
+ "modified": "2022-01-03 15:22:25.123007",
  "modified_by": "Administrator",
  "module": "Agnikul",
  "name": "Sourcing Request",

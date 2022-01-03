@@ -122,3 +122,14 @@ def _get_employee_from_user(user):
 		# frappe.db.exists returns a tuple of a tuple
 		return frappe.get_doc('Employee', employee_docname[0][0])
 	return None
+
+@frappe.whitelist()
+def validate_po(doc, method):
+	for i in doc.items:
+		mr = frappe.get_doc("Material Request", i.material_request)
+		sr = frappe.get_doc("Sourcing Request", mr.against_sourcing_request)
+		if sr.purchase_decision:
+			sr.request_status = "Closed Without IIR"
+			pass
+		else:
+			frappe.throw("Please compleate the PD Meeting for the Sourcing Request")

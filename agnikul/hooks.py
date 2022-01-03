@@ -89,13 +89,11 @@ before_migrate = "agnikul.install.before_install"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-#	}
-# }
+doc_events = {
+	"Purchase Order": {
+		"validate":	"agnikul.agnikul.doctype.sourcing_request.sourcing_request.validate_po"
+	}
+}
 
 # Scheduled Tasks
 # ---------------

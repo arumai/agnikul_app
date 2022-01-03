@@ -72,9 +72,15 @@ def check_inventory_against_spec(spec):
 @frappe.whitelist()
 def create_material_request(source_name, target_doc=None):
 	def set_missing_values(source, target):
+		target.material_request_type = "Material Transfer"
+		target.against_sourcing_request = source.name
+		item = frappe.get_doc("Item", source.requested_item)
 		target.append('items', {
 			'item_code': source.requested_item,
-			'qty': source.qty_requested
+			'qty': source.qty_requested,
+			'description': item.description,
+			'stock_uom': item.stock_uom,
+			'uom': item.stock_uom
 		})
 
 	doc = get_mapped_doc("Sourcing Request", source_name, {
@@ -84,3 +90,12 @@ def create_material_request(source_name, target_doc=None):
 	}, target_doc, set_missing_values)
 
 	return doc
+
+@frappe.whitelist()
+def _get_employee_from_user(user):
+	employee_docname = frappe.db.exists(
+		{'doctype': 'Employee', 'user_id': user})
+	if employee_docname:
+		# frappe.db.exists returns a tuple of a tuple
+		return frappe.get_doc('Employee', employee_docname[0][0])
+	return None

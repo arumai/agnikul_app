@@ -3,7 +3,7 @@
 
 frappe.ui.form.on('Sourcing Request', {
 	refresh: function(frm) {
-		if (!frm.doc.__islocal) {
+		if (!frm.doc.__islocal && frm.doc.docstatus == 0) {
 			frm.add_custom_button(__('Update Specifications'), function() {
 				frappe.confirm(__("Do you want to create new and use the updated Specification for this Request?"), function () {
 					frappe.call({
@@ -20,113 +20,38 @@ frappe.ui.form.on('Sourcing Request', {
 				})
 				
 			});
-			frm.add_custom_button(__('Conference, Exhibitions, Related Tender-Vendor Databasse'), function() {
-				alert("ASD");
-			}, __('Search'));
-			frm.add_custom_button(__('Internal Search Statement'), function() {
-				frappe.call({
-					method: "agnikul.agnikul.doctype.sourcing_request.sourcing_request.check_inventory_against_spec",
-					args: {
-						"spec": frm.doc.specification_sheet
-					},
-					callback: function (r) {
-						console.log(r.message);
-						var dialog = new frappe.ui.Dialog({
-							title: __("Internal Search Statement"),
-							fields: [
-								{fieldtype: "HTML", fieldname: "result", label: __("Result")},
-								]
-						});
-						var wrapper = dialog.fields_dict.result.$wrapper;
-						var html = `<table class="table">
-						<thead>
-						  <tr>
-							<th scope="col">Domain</th>
-							<th scope="col">Category</th>
-							<th scope="col">Key</th>
-							<th scope="col">Value</th>
-							<th scope="col">Must Have</th>
-							<th scope="col">Result</th>
-						  </tr>
-						</thead>
-						<tbody>`;
-						for (let i = 0; i < r.message.length; i++) {
-							const element = r.message[i];
-							let row = ``;
-							if (element.status == "Matching") {
-								row = `<tr style="background-color: lightgreen;">
-											<td>`+element.domain+`</td>
-											<td>`+element.category+`</td>
-											<td>`+element.key+`</td>
-											<td>`+element.value+`</td>
-											<td>`+element.must_have+`</td>
-											<td>`+element.status+`</td>
-										</tr>`
-							} else {
-								row = `<tr style="background-color: lightcoral;">
-											<td>`+element.domain+`</td>
-											<td>`+element.category+`</td>
-											<td>`+element.key+`</td>
-											<td>`+element.value+`</td>
-											<td>`+element.must_have+`</td>
-											<td>`+element.status+`</td>
-										</tr>`
-							}
-							
-							html = html + row
-						}
-						html = html + `</tbody>
-						</table>`
-						wrapper.html(html);
-						dialog.show();
-					}
-				})
-			}, __('Search'));
-			frm.add_custom_button(__('Market Search Statement'), function() {
-				window.open("https://www.google.com/search?q="+frm.doc.requested_item+" suppliers");
-			}, __('Search'));
-			if (frm.doc.sourcing_status == "Already In Inventory") {
-				frm.add_custom_button(__('Create Material Request'), function() {
-					if (frm.doc.sourcing_type == "Default") {
-						frappe.model.open_mapped_doc({
-							method: "agnikul.agnikul.doctype.sourcing_request.sourcing_request.create_material_request",
-							frm: frm
-						});
-					} else if (frm.doc.sourcing_type == "Local") {
-						
-					}
-				});
-			}
-			if (frm.doc.sourcing_status == "Waiting for approval") {
-				frm.add_custom_button(__('Approve'), function() {
-					frm.set_value("sourcing_status", "Approved");
-					frm.save();
-				});
-			}
+		}
+		if (!frm.doc.__islocal && frm.doc.docstatus == 1) {
+			if (frappe.user.has_role('System Manager')) {
 			
-		}
-	}
-});
+			}
+			frm.add_custom_button(__('New Component'), function() {
 
-frappe.ui.form.on("Sales Invoice Item", {
-	qty: function(frm, dt, dn) {
-		var d = locals[dt][dn];
-		if (d.qty > 0) {
-			d.amount = parseFloat(d.qty) * parseFloat(d.rate);
+			}, __('Set Sourcing Status'));
+			frm.add_custom_button(__('Existing Component'), function() {
+
+			}, __('Set Sourcing Status'));
+			frm.add_custom_button(__('Already In Inventory'), function() {
+
+			}, __('Set Sourcing Status'));
+			frm.add_custom_button(__('No Enough Data'), function() {
+
+			}, __('Set Sourcing Status'));
+			frm.add_custom_button(__('Product Found'), function() {
+
+			}, __('Set Sourcing Status'));
+			frm.add_custom_button(__('No Visible Progress'), function() {
+
+			}, __('Set Sourcing Status'));
+			frm.add_custom_button(__('Decline'), function() {
+
+			}, __('Set Request Status'));
+			frm.add_custom_button(__('Approve'), function() {
+
+			}, __('Set Request Status'));
+			frm.add_custom_button(__('Close'), function() {
+
+			}, __('Set Request Status'));
 		}
-		else{
-			d.qty = 0;
-		}
-		refresh_field("table_13");
-	},
-	rate: function(frm, dt, dn) {
-		var d = locals[dt][dn];
-		if (d.rate > 0) {
-			d.amount = parseFloat(d.qty) * parseFloat(d.rate);
-		}
-		else{
-			d.rate = 0;
-		}
-		refresh_field("table_13");
 	}
 });

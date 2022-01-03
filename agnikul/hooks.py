@@ -57,7 +57,7 @@ app_license = "MIT"
 # ------------
 
 # before_install = "agnikul.install.before_install"
-# after_install = "agnikul.install.after_install"
+before_migrate = "agnikul.install.before_install"
 
 # Desk Notifications
 # ------------------

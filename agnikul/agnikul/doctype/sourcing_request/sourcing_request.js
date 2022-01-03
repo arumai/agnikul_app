@@ -100,7 +100,7 @@ frappe.ui.form.on('Sourcing Request', {
 			}
 			
 		}
-		if (frappe.user.has_role('Agnikul Designer') {
+		if (frappe.user.has_role('Agnikul Designer')) {
 			frm.set_df_property('preliminary_design_meeting', 'read_only', 1);
 			frm.set_df_property('critical_design_meeting', 'read_only', 1);
 			frm.set_df_property('fabrication_level_cdr', 'read_only', 1);

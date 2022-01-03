@@ -11,6 +11,15 @@ frappe.ui.form.on('Sourcing Request', {
 		frm.set_df_property('bom_meeting', 'read_only', 1);
 		frm.set_df_property('component_qaqc', 'read_only', 1);
 		frm.set_df_property('purchase_decision', 'read_only', 1);
+		frm.set_df_property('project_meeting_report', 'read_only', 1);
+		frm.set_df_property('preliminary_design_meeting_report', 'read_only', 1);
+		frm.set_df_property('critical_design_meeting_report', 'read_only', 1);
+		frm.set_df_property('fabrication_level_cdr_report', 'read_only', 1);
+		frm.set_df_property('component_level_cdr_report', 'read_only', 1);
+		frm.set_df_property('bom_meeting_report', 'read_only', 1);
+		frm.set_df_property('component_qaqc_report', 'read_only', 1);
+
+		
 		if (frm.doc.__islocal && frm.doc.docstatus == 0 && frappe.session.user != "Administrator") {
 			frappe.call({
 				"method": "agnikul.agnikul.doctype.sourcing_request.sourcing_request._get_employee_from_user",
@@ -110,6 +119,24 @@ frappe.ui.form.on('Sourcing Request', {
 		}
 		if (frappe.user.has_role('Agnikul Designer')) {
 			frm.set_df_property('project_meeting', 'read_only', 0);
+			if (frm.doc.project_meeting_report) {
+				frm.set_df_property('preliminary_design_meeting_report', 'read_only', 0);
+			}
+			if (frm.doc.preliminary_design_meeting_report) {
+				frm.set_df_property('critical_design_meeting_report', 'read_only', 0);
+			}
+			if (frm.doc.critical_design_meeting_report) {
+				frm.set_df_property('fabrication_level_cdr_report', 'read_only', 0);
+			}
+			if (frm.doc.fabrication_level_cdr_report) {
+				frm.set_df_property('component_level_cdr_report', 'read_only', 0);
+			}
+			if (frm.doc.component_level_cdr_report) {
+				frm.set_df_property('bom_meeting_report', 'read_only', 0);
+			}
+			if (frm.doc.bom_meeting_report) {
+				frm.set_df_property('component_qaqc_report', 'read_only', 0);
+			}
 		}
 	}
 });

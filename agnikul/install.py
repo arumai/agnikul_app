@@ -6,6 +6,7 @@ def before_install():
         {'doctype': "Role", "role_name": "Agnikul Designer"},
 		{'doctype': "Role", "role_name": "Agnikul Operations Lead"},
 		{'doctype': "Role", "role_name": "Agnikul Operations Systems Engineer"},
+        {'doctype': "Role", "role_name": "Agnikul Design Team Lead"},
 		{'doctype': "Role", "role_name": "Agnikul Fabricator"}
     ]
     # make_records(records)

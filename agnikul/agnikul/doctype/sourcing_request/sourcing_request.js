@@ -39,7 +39,7 @@ frappe.ui.form.on('Sourcing Request', {
 					frm.savesubmit();
 				}, __('Set Sourcing Status'));
 				frm.add_custom_button(__('Existing Component'), function() {
-					frm.set_value("sourcing_status", "Available In Inventory");
+					frm.set_value("sourcing_status", "Existing Component");
 					frm.savesubmit();
 				}, __('Set Sourcing Status'));
 				frm.add_custom_button(__('Available In Inventory'), function() {
@@ -78,6 +78,18 @@ frappe.ui.form.on('Sourcing Request', {
 				if (frm.doc.sourcing_type == "Default") {
 					frappe.model.open_mapped_doc({
 						method: "agnikul.agnikul.doctype.sourcing_request.sourcing_request.create_material_request",
+						frm: frm
+					});
+				} else if (frm.doc.sourcing_type == "Emergency") {
+					
+				}
+			}, __('Create'));
+		}
+		if (frm.doc.sourcing_status == 'New Component' || frm.doc.sourcing_status == "Existing Component" && frm.doc.request_status == 'Pending') {
+			frm.add_custom_button(__('Material Request'), function() {
+				if (frm.doc.sourcing_type == "Default") {
+					frappe.model.open_mapped_doc({
+						method: "agnikul.agnikul.doctype.sourcing_request.sourcing_request.create_material_request_purchase",
 						frm: frm
 					});
 				} else if (frm.doc.sourcing_type == "Emergency") {

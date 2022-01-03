@@ -86,16 +86,19 @@ frappe.ui.form.on('Sourcing Request', {
 			}, __('Create'));
 		}
 		if (frm.doc.sourcing_status == 'New Component' || frm.doc.sourcing_status == "Existing Component" && frm.doc.request_status == 'Pending') {
-			frm.add_custom_button(__('Material Request'), function() {
-				if (frm.doc.sourcing_type == "Default") {
-					frappe.model.open_mapped_doc({
-						method: "agnikul.agnikul.doctype.sourcing_request.sourcing_request.create_material_request_purchase",
-						frm: frm
-					});
-				} else if (frm.doc.sourcing_type == "Emergency") {
-					
-				}
-			}, __('Create'));
+			if (frappe.user.has_role('Agnikul Operations Lead')) {
+				frm.add_custom_button(__('Material Request'), function() {
+					if (frm.doc.sourcing_type == "Default") {
+						frappe.model.open_mapped_doc({
+							method: "agnikul.agnikul.doctype.sourcing_request.sourcing_request.create_material_request_purchase",
+							frm: frm
+						});
+					} else if (frm.doc.sourcing_type == "Emergency") {
+						
+					}
+				}, __('Create'));
+			}
+			
 		}
 	}
 });

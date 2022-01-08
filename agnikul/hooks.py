@@ -14,7 +14,7 @@ app_logo_url = "/assets/agnikul/images/logo-pg.JPG"
 # ------------------
 
 # include js, css files in header of desk.html
-# app_include_css = "/assets/agnikul/css/agnikul.css"
+app_include_css = "/assets/agnikul/css/agnikul.css"
 # app_include_js = "/assets/agnikul/js/agnikul.js"
 
 # include js, css files in header of web template

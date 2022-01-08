@@ -8,7 +8,7 @@ app_icon = "octicon octicon-file-directory"
 app_color = "grey"
 app_email = "arumai.vigneshwaran@agnikul.in"
 app_license = "MIT"
-app_logo_url = "/assets/erpnext/images/logo-pg.JPG"
+app_logo_url = "/assets/agnikul/images/logo-pg.JPG"
 
 # Includes in <head>
 # ------------------

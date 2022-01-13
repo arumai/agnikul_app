@@ -3,6 +3,7 @@ from frappe.desk.page.setup_wizard.setup_wizard import make_records
 
 def before_install():
     records = [
+        {'doctype': "Role", "role_name": "Agnikul Founder"},
         {'doctype': "Role", "role_name": "Agnikul Designer"},
 		{'doctype': "Role", "role_name": "Agnikul Operations Lead"},
 		{'doctype': "Role", "role_name": "Agnikul Operations Systems Engineer"},

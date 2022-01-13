@@ -3,6 +3,8 @@
 
 frappe.ui.form.on('Sourcing Request', {
 	refresh: function(frm) {
+		var df = frappe.meta.get_docfield("Sourcing Request Item", "approved_qty", cur_frm.doc.name);
+		df.read_only = 1;
 		if (frm.doc.__islocal && frm.doc.docstatus == 0 && frappe.session.user != "Administrator") {
 			frappe.call({
 				"method": "agnikul.agnikul.doctype.sourcing_request.sourcing_request._get_employee_from_user",

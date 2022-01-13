@@ -84,7 +84,8 @@
    "default": "0",
    "fieldname": "enhanced_specification",
    "fieldtype": "Check",
-   "label": "Enhanced Specification"
+   "label": "Enhanced Specification",
+   "read_only": 1
   },
   {
    "depends_on": "eval:(doc.enhanced_specification == 1)",
@@ -96,7 +97,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-01-03 03:47:23.637798",
+ "modified": "2022-01-14 03:11:33.031148",
  "modified_by": "Administrator",
  "module": "Agnikul",
  "name": "Specification Sheet",

@@ -31,6 +31,7 @@ frappe.ui.form.on('Sourcing Request', {
 				frm.refresh_fields("table_16");
 			}
 		}
+		frm.refresh_fields("table_16");
 	},
 	setup: function (frm) {
 		frm.set_indicator_formatter('requested_item',

@@ -23,9 +23,9 @@ frappe.ui.form.on('Sourcing Request', {
 		if (!frm.doc.__islocal && frm.doc.docstatus == 1) {
 			if (frappe.user.has_role('Agnikul Founder')) {
 				var df = frappe.meta.get_docfield("Sourcing Request Item", "approved_qty", cur_frm.doc.name);
-				df.read_only = 1;
+				df.read_only = 0;
 				var df = frappe.meta.get_docfield("Sourcing Request Item", "approved_spare_qty", cur_frm.doc.name);
-				df.read_only = 1;
+				df.read_only = 0;
 			}
 		}
 	},

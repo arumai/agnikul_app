@@ -85,7 +85,8 @@
    "depends_on": "eval:(doc.docstatus == 1)",
    "fieldname": "approved_qty",
    "fieldtype": "Data",
-   "label": "Approved Qty"
+   "label": "Approved Qty",
+   "read_only": 1
   },
   {
    "columns": 1,
@@ -289,7 +290,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2022-01-14 03:45:39.291195",
+ "modified": "2022-01-14 03:47:15.765401",
  "modified_by": "Administrator",
  "module": "Agnikul",
  "name": "Sourcing Request Item",

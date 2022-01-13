@@ -34,7 +34,7 @@ frappe.ui.form.on('Sourcing Request', {
 			}
 		);
 		var df = frappe.meta.get_docfield("Sourcing Request Item","project_meeting", frm.doc.name);
-		df.read_only = 0;
+		df.read_only = 1;
 		frm.refresh_fields("table_16");
 	}
 });

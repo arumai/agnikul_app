@@ -36,12 +36,16 @@ frappe.ui.form.on('Sourcing Request', {
 	}
 });
 
-// frappe.ui.form.on('Sourcing Request Item', {
-// 	form_render: function(frm, cdt, cdn) {
-// 		const d = locals[cdt][cdn];
-// 		console.log(d)
-// 	},
-// 	specification_sheet: function (frm, cdt, cdn) {
-// 		const d = locals[cdt][cdn];
-// 	}
-// });
+frappe.ui.form.on('Sourcing Request Item', {
+	form_render: function(frm, cdt, cdn) {
+		const d = locals[cdt][cdn];
+		console.log(d)
+		if (!frm.doc.__islocal && frm.doc.docstatus == 1) {
+			if (frappe.user.has_role('Agnikul Founder')) {
+				var df = frappe.meta.get_docfield("Sourcing Request Item","approved_qty", frm.doc.name);
+				df.read_only = 0;
+				frm.refresh_fields("table_16");
+			}
+		}
+	}
+});

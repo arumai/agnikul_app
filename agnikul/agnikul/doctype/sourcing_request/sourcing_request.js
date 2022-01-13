@@ -22,9 +22,9 @@ frappe.ui.form.on('Sourcing Request', {
 		}
 		if (!frm.doc.__islocal && frm.doc.docstatus == 1) {
 			if (frappe.user.has_role('Agnikul Founder')) {
-				let df = frappe.meta.get_docfield("Sourcing Request Item", "approved_qty", cur_frm.doc.name);
+				var df = frappe.meta.get_docfield("Sourcing Request Item", "approved_qty", cur_frm.doc.name);
 				df.read_only = 1;
-				let df = frappe.meta.get_docfield("Sourcing Request Item", "approved_spare_qty", cur_frm.doc.name);
+				var df = frappe.meta.get_docfield("Sourcing Request Item", "approved_spare_qty", cur_frm.doc.name);
 				df.read_only = 1;
 			}
 		}

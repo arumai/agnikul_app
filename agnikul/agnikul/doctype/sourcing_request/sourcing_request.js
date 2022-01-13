@@ -26,6 +26,7 @@ frappe.ui.form.on('Sourcing Request', {
 				df.read_only = 0;
 				var df = frappe.meta.get_docfield("Sourcing Request Item", "approved_spare_qty", cur_frm.doc.name);
 				df.read_only = 0;
+				frm.refresh_fields("table_16");
 			}
 		}
 	},

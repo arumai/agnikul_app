@@ -15,32 +15,10 @@
   "column_break_4",
   "raised_by",
   "posting_date_and_time",
-  "section_break_2",
-  "specification_sheet",
-  "specification_version",
-  "column_break_9",
-  "qty_requested",
-  "requested_item",
+  "section_break_15",
+  "table_16",
   "section_break_12",
   "table_13",
-  "section_break_17",
-  "project_meeting",
-  "preliminary_design_meeting",
-  "critical_design_meeting",
-  "fabrication_level_cdr",
-  "component_level_cdr",
-  "bom_meeting",
-  "component_qaqc",
-  "purchase_decision",
-  "column_break_26",
-  "project_meeting_report",
-  "preliminary_design_meeting_report",
-  "critical_design_meeting_report",
-  "fabrication_level_cdr_report",
-  "column_break_31",
-  "component_level_cdr_report",
-  "bom_meeting_report",
-  "component_qaqc_report",
   "section_break_4",
   "identified_vendors",
   "amended_from"
@@ -54,15 +32,6 @@
    "options": "Sourcing Request",
    "print_hide": 1,
    "read_only": 1
-  },
-  {
-   "depends_on": "eval:(doc.sourcing_type == \"Default\")",
-   "fieldname": "specification_sheet",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Specification Sheet",
-   "mandatory_depends_on": "eval:(doc.sourcing_type == \"Default\")",
-   "options": "Specification Sheet"
   },
   {
    "fieldname": "raised_by",
@@ -111,22 +80,6 @@
    "search_index": 1
   },
   {
-   "depends_on": "eval:(doc.sourcing_type == \"Default\")",
-   "fetch_from": "specification_sheet.specification_version",
-   "fieldname": "specification_version",
-   "fieldtype": "Data",
-   "label": "Specification Version",
-   "read_only_depends_on": "eval:(doc.sourcing_type == \"Default\")"
-  },
-  {
-   "depends_on": "eval:(doc.sourcing_type == \"Default\")",
-   "fetch_from": "specification_sheet.item",
-   "fieldname": "requested_item",
-   "fieldtype": "Data",
-   "label": "Requested Item",
-   "read_only_depends_on": "eval:(doc.sourcing_type != \"Emergency\")"
-  },
-  {
    "columns": 1,
    "fieldname": "sourcing_type",
    "fieldtype": "Select",
@@ -148,91 +101,12 @@
   },
   {
    "depends_on": "eval:(doc.sourcing_type == \"Default\")",
-   "fieldname": "qty_requested",
-   "fieldtype": "Float",
-   "label": "Qty Requested",
-   "mandatory_depends_on": "eval:(doc.sourcing_type == \"Default\")",
-   "reqd": 1
-  },
-  {
-   "fieldname": "section_break_2",
-   "fieldtype": "Section Break"
-  },
-  {
-   "depends_on": "eval:(doc.sourcing_type == \"Default\")",
-   "fieldname": "column_break_9",
-   "fieldtype": "Column Break"
-  },
-  {
-   "depends_on": "eval:(doc.__islocal != \"1\" && doc.docstatus == 1)",
-   "fieldname": "section_break_17",
-   "fieldtype": "Section Break",
-   "label": "Meetings and Approvals"
-  },
-  {
-   "allow_on_submit": 1,
-   "default": "0",
-   "fieldname": "project_meeting",
-   "fieldtype": "Check",
-   "label": "Project meeting"
-  },
-  {
-   "allow_on_submit": 1,
-   "default": "0",
-   "fieldname": "preliminary_design_meeting",
-   "fieldtype": "Check",
-   "label": "Preliminary design meeting"
-  },
-  {
-   "allow_on_submit": 1,
-   "default": "0",
-   "fieldname": "critical_design_meeting",
-   "fieldtype": "Check",
-   "label": "Critical design meeting"
-  },
-  {
-   "allow_on_submit": 1,
-   "default": "0",
-   "fieldname": "fabrication_level_cdr",
-   "fieldtype": "Check",
-   "label": "Fabrication level CDR"
-  },
-  {
-   "allow_on_submit": 1,
-   "default": "0",
-   "fieldname": "component_level_cdr",
-   "fieldtype": "Check",
-   "label": "Component level CDR"
-  },
-  {
-   "depends_on": "eval:(doc.sourcing_type == \"Default\")",
    "fieldname": "project",
    "fieldtype": "Link",
    "label": "Project",
    "mandatory_depends_on": "eval:(doc.sourcing_type == \"Default\")",
    "options": "Project",
    "reqd": 1
-  },
-  {
-   "allow_on_submit": 1,
-   "default": "0",
-   "fieldname": "bom_meeting",
-   "fieldtype": "Check",
-   "label": "BOM Meeting"
-  },
-  {
-   "allow_on_submit": 1,
-   "default": "0",
-   "fieldname": "component_qaqc",
-   "fieldtype": "Check",
-   "label": "Component QA/QC"
-  },
-  {
-   "allow_on_submit": 1,
-   "default": "0",
-   "fieldname": "purchase_decision",
-   "fieldtype": "Check",
-   "label": "Purchase Decision"
   },
   {
    "default": "Now",
@@ -256,61 +130,21 @@
    "search_index": 1
   },
   {
-   "fieldname": "column_break_26",
-   "fieldtype": "Column Break"
+   "fieldname": "section_break_15",
+   "fieldtype": "Section Break"
   },
   {
    "allow_on_submit": 1,
-   "fieldname": "project_meeting_report",
-   "fieldtype": "Attach",
-   "in_list_view": 1,
-   "label": "Project meeting Report"
-  },
-  {
-   "allow_on_submit": 1,
-   "fieldname": "preliminary_design_meeting_report",
-   "fieldtype": "Attach",
-   "label": "Preliminary design meeting Report"
-  },
-  {
-   "allow_on_submit": 1,
-   "fieldname": "critical_design_meeting_report",
-   "fieldtype": "Attach",
-   "label": "Critical design meeting Report"
-  },
-  {
-   "allow_on_submit": 1,
-   "fieldname": "fabrication_level_cdr_report",
-   "fieldtype": "Attach",
-   "label": "Fabrication level CDR Report"
-  },
-  {
-   "allow_on_submit": 1,
-   "fieldname": "component_level_cdr_report",
-   "fieldtype": "Attach",
-   "label": "Component level CDR Report"
-  },
-  {
-   "allow_on_submit": 1,
-   "fieldname": "bom_meeting_report",
-   "fieldtype": "Attach",
-   "label": "BOM Meeting Report"
-  },
-  {
-   "allow_on_submit": 1,
-   "fieldname": "component_qaqc_report",
-   "fieldtype": "Attach",
-   "label": "Component QA/QC Report"
-  },
-  {
-   "fieldname": "column_break_31",
-   "fieldtype": "Column Break"
+   "fieldname": "table_16",
+   "fieldtype": "Table",
+   "options": "Sourcing Request Item",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2022-01-03 16:51:59.332013",
+ "modified": "2022-01-14 01:44:59.713839",
  "modified_by": "Administrator",
  "module": "Agnikul",
  "name": "Sourcing Request",

@@ -189,7 +189,7 @@
   {
    "allow_on_submit": 1,
    "default": "0",
-   "depends_on": "eval:(doc.component_qaqc == 1 && frappe.user.has_role('Agnikul Founder'))",
+   "depends_on": "eval:(doc.component_qaqc_report && doc.component_level_cdr_report && doc.project_meeting && doc.preliminary_design_meeting && doc.critical_design_meeting && doc.fabrication_level_cdr && doc.component_level_cdr && doc.bom_meeting &&doc.component_qaqc)",
    "fieldname": "purchase_decision",
    "fieldtype": "Check",
    "label": "Purchase Decision",
@@ -306,7 +306,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2022-01-14 05:59:54.095945",
+ "modified": "2022-01-14 06:06:12.030853",
  "modified_by": "Administrator",
  "module": "Agnikul",
  "name": "Sourcing Request Item",

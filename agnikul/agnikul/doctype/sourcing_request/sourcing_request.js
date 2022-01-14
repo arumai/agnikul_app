@@ -33,16 +33,6 @@ frappe.ui.form.on('Sourcing Request', {
 				return indicator;
 			}
 		);
-		var df = frappe.meta.get_docfield("Sourcing Request Item","project_meeting", frm.doc.name);
-		df.read_only = 1;
-		frm.refresh_fields("table_16");
-	}
-});
-
-frappe.ui.form.on('Sourcing Request Item', {
-	form_render: function(frm, cdt, cdn) {
-		const d = locals[cdt][cdn];
-		console.log(d)
 		if (!frm.doc.__islocal && frm.doc.docstatus == 1) {
 			if (frappe.user.has_role('Agnikul Founder')) {
 				var df = frappe.meta.get_docfield("Sourcing Request Item","approved_qty", frm.doc.name);
@@ -50,5 +40,13 @@ frappe.ui.form.on('Sourcing Request Item', {
 				frm.refresh_fields("table_16");
 			}
 		}
+	}
+});
+
+frappe.ui.form.on('Sourcing Request Item', {
+	form_render: function(frm, cdt, cdn) {
+		const d = locals[cdt][cdn];
+		console.log(d)
+		
 	}
 });

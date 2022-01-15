@@ -80,23 +80,6 @@ frappe.ui.form.on('Sourcing Request', {
 				frm.set_df_property('identified_vendors', 'cannot_add_rows', true);
 				frm.set_df_property('identified_vendors', 'cannot_delete_rows', true);
 			}
-			if (frappe.user.has_role('Stock Manager') || frappe.user.has_role('Agnikul Operations Lead') || frappe.user.has_role('Agnikul Operations Systems Engineer') || frappe.user.has_role('Agnikul Founder')) {
-				var df1 = frappe.meta.get_docfield("Sourcing Request Item","project_meeting_report", frm.doc.name);
-				var df2 = frappe.meta.get_docfield("Sourcing Request Item","preliminary_design_meeting_report", frm.doc.name);
-				var df3 = frappe.meta.get_docfield("Sourcing Request Item","critical_design_meeting_report", frm.doc.name);
-				var df4 = frappe.meta.get_docfield("Sourcing Request Item","fabrication_level_cdr_report", frm.doc.name);
-				var df5 = frappe.meta.get_docfield("Sourcing Request Item","component_level_cdr_report", frm.doc.name);
-				var df6 = frappe.meta.get_docfield("Sourcing Request Item","bom_meeting_report", frm.doc.name);
-				var df7 = frappe.meta.get_docfield("Sourcing Request Item","component_qaqc_report", frm.doc.name);
-				df1.hidden = 1;
-				df2.hidden = 1;
-				df3.hidden = 1;
-				df4.hidden = 1;
-				df5.hidden = 1;
-				df6.hidden = 1;
-				df7.hidden = 1;
-				frm.refresh_fields("table_16");
-			}
 		}
 	}
 });

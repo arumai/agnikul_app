@@ -205,7 +205,8 @@
    "fieldtype": "Attach",
    "ignore_user_permissions": 1,
    "label": "Project meeting Report",
-   "permlevel": 1
+   "permlevel": 1,
+   "read_only_depends_on": "rval:((frappe.user.has_role('Agnikul Designer') || (frappe.user.has_role('Agnikul Design Team Lead')  || (frappe.user.has_role('Agnikul Fabricator'))"
   },
   {
    "allow_on_submit": 1,
@@ -304,7 +305,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2022-01-15 20:13:53.780470",
+ "modified": "2022-01-16 01:52:07.501808",
  "modified_by": "Administrator",
  "module": "Agnikul",
  "name": "Sourcing Request Item",

@@ -14,7 +14,7 @@ frappe.ui.form.on('Sourcing Request', {
 				}
 			})
 		}
-		if (frappe.user.has_role('Stock Manager') || frappe.user.has_role('Agnikul Founder')) {
+		if (frappe.user.has_role('Stock Manager') || frappe.user.has_role('Agnikul Founder') || frappe.user.has_role('Agnikul Operations Lead') || frappe.user.has_role('Agnikul Operations Systems Engineer')) {
 			frm.fields_dict["table_16"].grid.wrapper.find(".grid-add-row").hide();
 		}
 		
@@ -83,7 +83,7 @@ frappe.ui.form.on('Sourcing Request', {
 frappe.ui.form.on('Sourcing Request Item', {
 	form_render: function(frm, cdt, cdn) {
 		const d = locals[cdt][cdn];
-		if (frappe.user.has_role('Stock Manager') || frappe.user.has_role('Agnikul Founder')) {
+		if (frappe.user.has_role('Stock Manager') || frappe.user.has_role('Agnikul Founder') || frappe.user.has_role('Agnikul Operations Lead') || frappe.user.has_role('Agnikul Operations Systems Engineer')) {
 			frm.fields_dict["table_16"].grid.wrapper.find(".grid-insert-row").hide();
 			frm.fields_dict["table_16"].grid.wrapper.find(".grid-delete-row").hide();
 			frm.fields_dict["table_16"].grid.wrapper.find(".grid-insert-row-below").hide();

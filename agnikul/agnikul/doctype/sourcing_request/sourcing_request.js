@@ -90,6 +90,7 @@ frappe.ui.form.on('Sourcing Request Item', {
 			frm.fields_dict["table_16"].grid.wrapper.find(".grid-duplicate-row").hide();
 			frm.fields_dict["table_16"].grid.wrapper.find(".grid-move-row").hide();
 			frm.fields_dict["table_16"].grid.wrapper.find(".grid-append-row").hide();
+			frm.fields_dict["table_16"].grid.wrapper.find(".grid-remove-rows").hide();
 		}
 		
 	},

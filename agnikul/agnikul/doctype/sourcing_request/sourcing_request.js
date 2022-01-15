@@ -80,6 +80,16 @@ frappe.ui.form.on('Sourcing Request', {
 				frm.set_df_property('identified_vendors', 'cannot_add_rows', true);
 				frm.set_df_property('identified_vendors', 'cannot_delete_rows', true);
 			}
+			if (frappe.user.has_role('Stock Manager') || frappe.user.has_role('Agnikul Operations Lead') || frappe.user.has_role('Agnikul Operations Systems Engineer') || frappe.user.has_role('Agnikul Founder')) {
+				frappe.meta.get_docfield("Sourcing Request Item","project_meeting_report", frm.doc.name).read_only = 1;
+				frappe.meta.get_docfield("Sourcing Request Item","preliminary_design_meeting_report", frm.doc.name).read_only = 1;
+				frappe.meta.get_docfield("Sourcing Request Item","critical_design_meeting_report", frm.doc.name).read_only = 1;
+				frappe.meta.get_docfield("Sourcing Request Item","fabrication_level_cdr_report", frm.doc.name).read_only = 1;
+				frappe.meta.get_docfield("Sourcing Request Item","component_level_cdr_report", frm.doc.name).read_only = 1;
+				frappe.meta.get_docfield("Sourcing Request Item","bom_meeting_report", frm.doc.name).read_only = 1;
+				frappe.meta.get_docfield("Sourcing Request Item","component_qaqc_report", frm.doc.name).read_only = 1;
+				frm.refresh_fields("table_16");
+			}
 		}
 	}
 });

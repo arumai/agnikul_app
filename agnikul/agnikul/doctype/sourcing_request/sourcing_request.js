@@ -92,5 +92,16 @@ frappe.ui.form.on('Sourcing Request Item', {
 			frm.fields_dict["table_16"].grid.wrapper.find(".grid-append-row").hide();
 		}
 		
+	},
+	request_status: function (frm, cdt, cdn) {
+		const d = locals[cdt][cdn];
+		if (d.request_status == "Approved") {
+			if (d.project_meeting && d.preliminary_design_meeting && d.critical_design_meeting && d.fabrication_level_cdr && d.component_level_cdr && d.bom_meeting && d.component_qaqc && d.purchase_decision ) {
+			
+			}
+			else{
+				frappe.throw("Please complete all the meetings before approving.")
+			}
+		} 
 	}
 });

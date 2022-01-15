@@ -101,7 +101,9 @@ frappe.ui.form.on('Sourcing Request Item', {
 			
 			}
 			else{
-				frappe.throw("Please complete all the meetings before approving.")
+				frappe.throw("Please complete all the meetings before approving.");
+				d.request_status == "Pending";
+				frm.refresh_fields("table_16");
 			}
 		} 
 	}

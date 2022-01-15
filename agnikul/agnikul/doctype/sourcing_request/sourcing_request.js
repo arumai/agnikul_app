@@ -49,7 +49,7 @@ frappe.ui.form.on('Sourcing Request', {
 					var indicator = 'red';
 				}
 				else if (doc.request_status == "Declined") {
-					var indicator = 'black';
+					var indicator = 'red';
 				}
 				else if (doc.request_status == "Closed Without IIR") {
 					var indicator = 'grey';

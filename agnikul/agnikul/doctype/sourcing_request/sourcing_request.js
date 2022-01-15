@@ -59,6 +59,8 @@ frappe.ui.form.on('Sourcing Request', {
 		)
 		if (!frm.doc.__islocal && frm.doc.docstatus == 1) {
 			if (frappe.user.has_role('Agnikul Founder')) {
+				var adf = frappe.meta.get_docfield("Sourcing Request Item","update_specifications", frm.doc.name);
+				adf.hidden = 1;
 				var df = frappe.meta.get_docfield("Sourcing Request Item","request_status", frm.doc.name);
 				df.read_only = 0;
 				df.options = [ "Pending", "Declined", "Approved" ]
@@ -67,6 +69,8 @@ frappe.ui.form.on('Sourcing Request', {
 				frm.set_df_property('identified_vendors', 'cannot_delete_rows', true);
 			}
 			if (frappe.user.has_role('Stock Manager') || frappe.user.has_role('Agnikul Operations Lead') || frappe.user.has_role('Agnikul Operations Systems Engineer')) {
+				var adf = frappe.meta.get_docfield("Sourcing Request Item","update_specifications", frm.doc.name);
+				adf.hidden = 1;
 				var df = frappe.meta.get_docfield("Sourcing Request Item","sourcing_status", frm.doc.name);
 				df.read_only = 0;
 				if (frappe.user.has_role('Stock Manager')) {

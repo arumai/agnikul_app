@@ -14,30 +14,65 @@ frappe.ui.form.on('Sourcing Request', {
 				}
 			})
 		}
-		if (!frm.doc.__islocal && frm.doc.docstatus == 1) {
-			if (frappe.user.has_role('Stock Manager')) {
-				var df = frappe.meta.get_docfield("Sourcing Request Item", "sourcing_required", cur_frm.doc.name);
-				df.read_only = 1;
-			}
+		if (frappe.user.has_role('Stock Manager') || frappe.user.has_role('Agnikul Founder')) {
+			frm.fields_dict["table_16"].grid.wrapper.find(".grid-add-row").hide();
 		}
-		if (!frm.doc.__islocal && frm.doc.docstatus == 1) {
-			if (frappe.user.has_role('Agnikul Founder')) {
-
-			}
-		}
+		
 	},
 	setup: function (frm) {
 		frm.set_indicator_formatter('requested_item',
 			function(doc) {
-				let indicator = 'blue';
-				return indicator;
+				if (doc.sourcing_status == "Available In Inventory") {
+					var indicator = 'orange';
+				} 
+				else if (doc.sourcing_status == "Pending") {
+					var indicator = 'red';
+				}
+				else if (doc.sourcing_status == "Existing Component") {
+					var indicator = 'pink';
+				}
+				else if (doc.sourcing_status == "New Component") {
+					var indicator = 'blue';
+				}
+				return indicator
 			}
-		);
+		)
+		frm.set_indicator_formatter('specification_sheet',
+			function(doc) {
+				if (doc.request_status == "Approved") {
+					var indicator = 'green';
+				} 
+				else if (doc.request_status == "Closed") {
+					var indicator = 'grey';
+				}
+				else if (doc.request_status == "Pending") {
+					var indicator = 'red';
+				}
+				else if (doc.request_status == "Declined") {
+					var indicator = 'black';
+				}
+				else if (doc.request_status == "Closed Without IIR") {
+					var indicator = 'grey';
+				}
+				return indicator
+			}
+		)
 		if (!frm.doc.__islocal && frm.doc.docstatus == 1) {
 			if (frappe.user.has_role('Agnikul Founder')) {
-				var df = frappe.meta.get_docfield("Sourcing Request Item","approved_qty", frm.doc.name);
+				var df = frappe.meta.get_docfield("Sourcing Request Item","request_status", frm.doc.name);
 				df.read_only = 0;
+				df.options = [ "Pending", "Declined", "Approved" ]
 				frm.refresh_fields("table_16");
+				frm.set_df_property('identified_vendors', 'cannot_add_rows', true);
+				frm.set_df_property('identified_vendors', 'cannot_delete_rows', true);
+			}
+			if (frappe.user.has_role('Stock Manager')) {
+				var df = frappe.meta.get_docfield("Sourcing Request Item","sourcing_status", frm.doc.name);
+				df.read_only = 0;
+				df.options = [ "Pending", "New Component", "Existing Component", "Available In Inventory" ]
+				frm.refresh_fields("table_16");
+				frm.set_df_property('identified_vendors', 'cannot_add_rows', true);
+				frm.set_df_property('identified_vendors', 'cannot_delete_rows', true);
 			}
 		}
 	}
@@ -46,7 +81,14 @@ frappe.ui.form.on('Sourcing Request', {
 frappe.ui.form.on('Sourcing Request Item', {
 	form_render: function(frm, cdt, cdn) {
 		const d = locals[cdt][cdn];
-		console.log(d)
+		if (frappe.user.has_role('Stock Manager') || frappe.user.has_role('Agnikul Founder')) {
+			frm.fields_dict["table_16"].grid.wrapper.find(".grid-insert-row").hide();
+			frm.fields_dict["table_16"].grid.wrapper.find(".grid-delete-row").hide();
+			frm.fields_dict["table_16"].grid.wrapper.find(".grid-insert-row-below").hide();
+			frm.fields_dict["table_16"].grid.wrapper.find(".grid-duplicate-row").hide();
+			frm.fields_dict["table_16"].grid.wrapper.find(".grid-move-row").hide();
+			frm.fields_dict["table_16"].grid.wrapper.find(".grid-append-row").hide();
+		}
 		
 	}
 });

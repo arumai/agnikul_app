@@ -10,7 +10,6 @@
   "specification_version",
   "requested_item",
   "update_specifications",
-  "sourcing_required",
   "column_break_4",
   "requested_qty",
   "approved_qty",
@@ -205,49 +204,56 @@
    "fieldname": "project_meeting_report",
    "fieldtype": "Attach",
    "ignore_user_permissions": 1,
-   "label": "Project meeting Report"
+   "label": "Project meeting Report",
+   "permlevel": 1
   },
   {
    "allow_on_submit": 1,
    "depends_on": "eval:doc.project_meeting_report",
    "fieldname": "preliminary_design_meeting_report",
    "fieldtype": "Attach",
-   "label": "Preliminary design meeting Report"
+   "label": "Preliminary design meeting Report",
+   "permlevel": 1
   },
   {
    "allow_on_submit": 1,
    "depends_on": "eval:doc.project_meeting_report && doc.preliminary_design_meeting_report",
    "fieldname": "critical_design_meeting_report",
    "fieldtype": "Attach",
-   "label": "Critical design meeting Report"
+   "label": "Critical design meeting Report",
+   "permlevel": 1
   },
   {
    "allow_on_submit": 1,
    "depends_on": "eval:doc.critical_design_meeting_report && doc.project_meeting_report && doc.preliminary_design_meeting_report",
    "fieldname": "fabrication_level_cdr_report",
    "fieldtype": "Attach",
-   "label": "Fabrication level CDR Report"
+   "label": "Fabrication level CDR Report",
+   "permlevel": 1
   },
   {
    "allow_on_submit": 1,
    "depends_on": "eval:doc.fabrication_level_cdr_report && doc.critical_design_meeting_report && doc.project_meeting_report && doc.preliminary_design_meeting_report",
    "fieldname": "component_level_cdr_report",
    "fieldtype": "Attach",
-   "label": "Component level CDR Report"
+   "label": "Component level CDR Report",
+   "permlevel": 1
   },
   {
    "allow_on_submit": 1,
    "depends_on": "eval:doc.component_level_cdr_report && doc.fabrication_level_cdr_report && doc.critical_design_meeting_report && doc.project_meeting_report && doc.preliminary_design_meeting_report",
    "fieldname": "bom_meeting_report",
    "fieldtype": "Attach",
-   "label": "BOM Meeting Report"
+   "label": "BOM Meeting Report",
+   "permlevel": 1
   },
   {
    "allow_on_submit": 1,
    "depends_on": "eval:doc.bom_meeting_report && doc.component_level_cdr_report && doc.fabrication_level_cdr_report && doc.critical_design_meeting_report && doc.project_meeting_report && doc.preliminary_design_meeting_report\n",
    "fieldname": "component_qaqc_report",
    "fieldtype": "Attach",
-   "label": "Component QA/QC Report"
+   "label": "Component QA/QC Report",
+   "permlevel": 1
   },
   {
    "fieldname": "column_break_23",
@@ -258,18 +264,8 @@
    "depends_on": "eval:(doc.docstatus == 1)",
    "fieldname": "update_specifications",
    "fieldtype": "Button",
-   "label": "Update Specifications"
-  },
-  {
-   "columns": 1,
-   "default": "0",
-   "depends_on": "eval:(doc.docstatus == 1)",
-   "fieldname": "sourcing_required",
-   "fieldtype": "Check",
-   "in_list_view": 1,
-   "label": "Sourcing Required",
-   "read_only": 1,
-   "search_index": 1
+   "label": "Update Specifications",
+   "permlevel": 1
   },
   {
    "depends_on": "eval:(doc.docstatus == 1)",
@@ -277,6 +273,7 @@
    "fieldtype": "Section Break"
   },
   {
+   "allow_on_submit": 1,
    "columns": 1,
    "default": "Pending",
    "fieldname": "request_status",
@@ -292,6 +289,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "allow_on_submit": 1,
    "columns": 1,
    "default": "Pending",
    "fieldname": "sourcing_status",
@@ -306,7 +304,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2022-01-14 06:06:12.030853",
+ "modified": "2022-01-15 20:13:53.780470",
  "modified_by": "Administrator",
  "module": "Agnikul",
  "name": "Sourcing Request Item",

@@ -66,10 +66,12 @@ frappe.ui.form.on('Sourcing Request', {
 				frm.set_df_property('identified_vendors', 'cannot_add_rows', true);
 				frm.set_df_property('identified_vendors', 'cannot_delete_rows', true);
 			}
-			if (frappe.user.has_role('Stock Manager')) {
+			if (frappe.user.has_role('Stock Manager') || frappe.user.has_role('Agnikul Operations Lead') || frappe.user.has_role('Agnikul Operations Systems Engineer')) {
 				var df = frappe.meta.get_docfield("Sourcing Request Item","sourcing_status", frm.doc.name);
 				df.read_only = 0;
-				df.options = [ "Pending", "New Component", "Existing Component", "Available In Inventory" ]
+				if (frappe.user.has_role('Stock Manager')) {
+					df.options = [ "Pending", "New Component", "Existing Component", "Available In Inventory" ]
+				}
 				frm.refresh_fields("table_16");
 				frm.set_df_property('identified_vendors', 'cannot_add_rows', true);
 				frm.set_df_property('identified_vendors', 'cannot_delete_rows', true);

@@ -111,7 +111,19 @@ frappe.ui.form.on('Sourcing Request Item', {
 		} 
 	},
 	update_specifications: function (frm, cdt, cdn) {
-		const d = locals[cdt][cdn];
-		console.log("ASDASD");
+		const doc = locals[cdt][cdn];
+		frappe.confirm(__("Do you want to create new and use the updated Specification for this Request?"), function () {
+			frappe.call({
+				"method": "agnikul.agnikul.doctype.sourcing_request.sourcing_request.create_updated_spec",
+				"args": {
+					"spec": doc.specification_sheet
+				},
+				callback: function (r) {
+					frappe.model.set_value(cdt, cdn, "specification_sheet", r.message);
+					frm.savesubmit();
+					frappe.set_route('Form', 'Specification Sheet', r.message);
+				}
+			})
+		})
 	}
 });

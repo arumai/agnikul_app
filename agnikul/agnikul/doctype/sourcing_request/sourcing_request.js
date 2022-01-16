@@ -110,7 +110,7 @@ frappe.ui.form.on('Sourcing Request Item', {
 			}
 		} 
 	},
-	update_specification: function (frm, cdt, cdn) {
+	update_specifications: function (frm, cdt, cdn) {
 		const d = locals[cdt][cdn];
 		console.log("ASDASD");
 	}

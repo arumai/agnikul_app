@@ -109,5 +109,9 @@ frappe.ui.form.on('Sourcing Request Item', {
 				frappe.throw("Please complete all the meetings before approving.");
 			}
 		} 
+	},
+	update_specification: function (frm, cdt, cdn) {
+		const d = locals[cdt][cdn];
+		console.log("ASDASD");
 	}
 });

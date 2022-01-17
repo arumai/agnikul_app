@@ -125,5 +125,12 @@ frappe.ui.form.on('Sourcing Request Item', {
 				}
 			})
 		})
+	},
+	create_material_request: function (frm, cdt, cdn) {
+		const doc = locals[cdt][cdn];
+		frappe.model.open_mapped_doc({
+			method: "agnikul.agnikul.doctype.sourcing_request.sourcing_request.create_material_request",
+			frm: frm
+		});
 	}
 });

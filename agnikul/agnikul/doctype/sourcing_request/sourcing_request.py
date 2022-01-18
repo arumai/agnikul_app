@@ -80,7 +80,7 @@ def create_material_request(source_name, target_doc=None, args=None):
 		elif data["sourcing_status"] == "Available In Inventory":
 			target.material_request_type = "Material Transfer"
 			
-		target.against_sourcing_request = source.name
+		target.against_sourcing_request = data['name']
 		item = frappe.get_doc("Item", data["requested_item"])
 		target.append('items', {
 			'item_code': data["requested_item"],
@@ -135,9 +135,8 @@ def validate_po(doc, method):
 	for i in doc.items:
 		if i.material_request:
 			mr = frappe.get_doc("Material Request", i.material_request)
-			sr = frappe.get_doc("Sourcing Request", mr.against_sourcing_request)
+			sr = frappe.get_doc("Sourcing Request Item", mr.against_sourcing_request)
 			if sr.purchase_decision:
-				sr.request_status = "Closed Without IIR"
 				pass
 			else:
 				frappe.throw("Please compleate the PD Meeting for the Sourcing Request")

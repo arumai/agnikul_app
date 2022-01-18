@@ -78,6 +78,7 @@ def create_material_request(source_name, target_doc=None, args=None):
 	else:
 		args = json.loads(args)
 		args = args.get('doc')
+	frappe.msgprint(args)
 	def set_missing_values(source, target):
 		target.material_request_type = "Material Transfer"
 		target.against_sourcing_request = args.parent

@@ -6,6 +6,8 @@ import frappe
 from frappe.model.document import Document
 from pypika import NULL
 from frappe.model.mapper import get_mapped_doc
+from six import string_types
+import json
 
 class SourcingRequest(Document):
 	pass
@@ -70,9 +72,13 @@ def check_inventory_against_spec(spec):
 	return result
 
 @frappe.whitelist()
-def create_material_request(source_name, args, target_doc=None):
+def create_material_request(source_name, target_doc=None, args=None):
+	if args is None:
+		args = {}
+	if isinstance(args, string_types):
+		args = json.loads(args)
+	frappe.throw(args)
 	def set_missing_values(source, target):
-		frappe.throw(args[doc].name)
 		target.material_request_type = "Material Transfer"
 		target.against_sourcing_request = source.parent
 		item = frappe.get_doc("Item", source.requested_item)

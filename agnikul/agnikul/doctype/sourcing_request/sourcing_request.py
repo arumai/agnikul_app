@@ -75,16 +75,16 @@ def check_inventory_against_spec(spec):
 def create_material_request(source_name, target_doc=None, args=None):
 	if args is None:
 		args = {}
-	if isinstance(args, string_types):
+	else:
 		args = json.loads(args)
-	frappe.throw(args)
+		args = args.get('doc')
 	def set_missing_values(source, target):
 		target.material_request_type = "Material Transfer"
-		target.against_sourcing_request = source.parent
-		item = frappe.get_doc("Item", source.requested_item)
+		target.against_sourcing_request = args.parent
+		item = frappe.get_doc("Item", args.requested_item)
 		target.append('items', {
-			'item_code': source.requested_item,
-			'qty': source.qty_requested,
+			'item_code': args.requested_item,
+			'qty': args.qty_requested,
 			'description': item.description,
 			'stock_uom': item.stock_uom,
 			'uom': item.stock_uom

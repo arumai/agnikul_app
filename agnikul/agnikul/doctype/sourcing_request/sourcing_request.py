@@ -80,7 +80,7 @@ def create_material_request(source_name, target_doc=None, args=None):
 		elif data["sourcing_status"] == "Available In Inventory":
 			target.material_request_type = "Material Transfer"
 			
-		target.against_sourcing_request = source.parent
+		target.against_sourcing_request = source.name
 		item = frappe.get_doc("Item", data["requested_item"])
 		target.append('items', {
 			'item_code': data["requested_item"],

@@ -73,19 +73,18 @@ def check_inventory_against_spec(spec):
 
 @frappe.whitelist()
 def create_material_request(source_name, target_doc=None, args=None):
-	if args is None:
-		args = {}
-	else:
-		args = json.loads(args)
-		args = args.get('doc')
-	frappe.msgprint(args)
 	def set_missing_values(source, target):
-		target.material_request_type = "Material Transfer"
-		target.against_sourcing_request = args.parent
-		item = frappe.get_doc("Item", args.requested_item)
+		data = frappe.flags.args.doc
+		if data["sourcing_status"] == "Existing Component" or data["sourcing_status"] == "New Component":
+			target.material_request_type = "Purchase"
+		elif data["sourcing_status"] == "Available In Inventory":
+			target.material_request_type = "Material Transfer"
+			
+		target.against_sourcing_request = source.parent
+		item = frappe.get_doc("Item", data["requested_item"])
 		target.append('items', {
-			'item_code': args.requested_item,
-			'qty': args.qty_requested,
+			'item_code': data["requested_item"],
+			'qty': data["approved_qty"],
 			'description': item.description,
 			'stock_uom': item.stock_uom,
 			'uom': item.stock_uom

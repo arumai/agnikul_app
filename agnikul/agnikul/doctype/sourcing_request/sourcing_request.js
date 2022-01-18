@@ -132,7 +132,7 @@ frappe.ui.form.on('Sourcing Request Item', {
 			method: "agnikul.agnikul.doctype.sourcing_request.sourcing_request.create_material_request",
 			frm: frm,
 			args: {
-				"doc": doc
+				doc: doc
 			}
 		});
 	}

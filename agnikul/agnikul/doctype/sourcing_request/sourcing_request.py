@@ -70,8 +70,9 @@ def check_inventory_against_spec(spec):
 	return result
 
 @frappe.whitelist()
-def create_material_request(source_name, target_doc=None):
+def create_material_request(source_name, args, target_doc=None):
 	def set_missing_values(source, target):
+		frappe.throw(args[doc].name)
 		target.material_request_type = "Material Transfer"
 		target.against_sourcing_request = source.parent
 		item = frappe.get_doc("Item", source.requested_item)

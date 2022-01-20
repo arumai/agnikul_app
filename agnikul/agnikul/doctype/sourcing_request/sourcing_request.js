@@ -17,7 +17,12 @@ frappe.ui.form.on('Sourcing Request', {
 		if (frappe.user.has_role('Stock Manager') || frappe.user.has_role('Agnikul Founder') || frappe.user.has_role('Agnikul Operations Lead') || frappe.user.has_role('Agnikul Operations Systems Engineer')) {
 			frm.fields_dict["table_16"].grid.wrapper.find(".grid-add-row").hide();
 		}
-		
+		if (!frm.doc.__islocal && frm.doc.docstatus == 1 && frappe.user.has_role('Agnikul Designer') ) {
+			frm.fields_dict["table_16"].grid.wrapper.find(".grid-add-row").hide();
+		}
+		if (!frm.doc.__islocal && frm.doc.docstatus == 1 && (frappe.user.has_role('Agnikul Operations Lead') || frappe.user.has_role('Agnikul Operations Systems Engineer')) ) {
+			$(".list-unstyled.sidebar-menu.form-attachments").hide();
+		}
 	},
 	setup: function (frm) {
 		frm.set_indicator_formatter('requested_item',
@@ -73,6 +78,8 @@ frappe.ui.form.on('Sourcing Request', {
 				adf.hidden = 1;
 				var df = frappe.meta.get_docfield("Sourcing Request Item","sourcing_status", frm.doc.name);
 				df.read_only = 0;
+				var ss = frappe.meta.get_docfield("Sourcing Request Item","specification_sheet", frm.doc.name);
+				ss.read_only = 1;
 				if (frappe.user.has_role('Stock Manager')) {
 					df.options = [ "Pending", "New Component", "Existing Component", "Available In Inventory" ]
 				}
@@ -96,7 +103,15 @@ frappe.ui.form.on('Sourcing Request Item', {
 			frm.fields_dict["table_16"].grid.wrapper.find(".grid-append-row").hide();
 			frm.fields_dict["table_16"].grid.wrapper.find(".grid-remove-rows").hide();
 		}
-		
+		if (!frm.doc.__islocal && frm.doc.docstatus == 1 && frappe.user.has_role('Agnikul Designer') ) {
+			frm.fields_dict["table_16"].grid.wrapper.find(".grid-insert-row").hide();
+			frm.fields_dict["table_16"].grid.wrapper.find(".grid-delete-row").hide();
+			frm.fields_dict["table_16"].grid.wrapper.find(".grid-insert-row-below").hide();
+			frm.fields_dict["table_16"].grid.wrapper.find(".grid-duplicate-row").hide();
+			frm.fields_dict["table_16"].grid.wrapper.find(".grid-move-row").hide();
+			frm.fields_dict["table_16"].grid.wrapper.find(".grid-append-row").hide();
+			frm.fields_dict["table_16"].grid.wrapper.find(".grid-remove-rows").hide();
+		}
 	},
 	request_status: function (frm, cdt, cdn) {
 		const d = locals[cdt][cdn];

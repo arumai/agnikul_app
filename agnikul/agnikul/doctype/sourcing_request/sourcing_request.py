@@ -136,7 +136,14 @@ def validate_po(doc, method):
 		if i.material_request:
 			mr = frappe.get_doc("Material Request", i.material_request)
 			sr = frappe.get_doc("Sourcing Request Item", mr.against_sourcing_request)
-			if sr.purchase_decision:
-				pass
-			else:
-				frappe.throw("Please compleate the PD Meeting for the Sourcing Request")
+			sourcing_request_doc = frappe.get_doc("Sourcing Request", sr.parent)
+			if sourcing_request_doc.sourcing_type == "Default":
+				if sr.purchase_decision:
+					pass
+				else:
+					frappe.throw("Please compleate the PD Meeting for the Sourcing Request")
+			if sourcing_request_doc.sourcing_type == "Emergency":
+				if sr.approval_status == "Approved":
+					pass
+				else:
+					frappe.throw("Please get the approval for sourcing request "+ sourcing_request_doc.name +" before creating the Purchase Order")

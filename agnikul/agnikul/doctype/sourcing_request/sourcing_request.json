@@ -17,8 +17,6 @@
   "posting_date_and_time",
   "section_break_15",
   "table_16",
-  "section_break_12",
-  "table_13",
   "section_break_4",
   "identified_vendors",
   "amended_from"
@@ -90,21 +88,9 @@
    "reqd": 1
   },
   {
-   "depends_on": "eval:(doc.sourcing_type == \"Emergency\")",
-   "fieldname": "section_break_12",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "table_13",
-   "fieldtype": "Table",
-   "options": "Sales Invoice Item"
-  },
-  {
-   "depends_on": "eval:(doc.sourcing_type == \"Default\")",
    "fieldname": "project",
    "fieldtype": "Link",
    "label": "Project",
-   "mandatory_depends_on": "eval:(doc.sourcing_type == \"Default\")",
    "options": "Project",
    "reqd": 1
   },
@@ -144,7 +130,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2022-01-20 16:30:38.269893",
+ "modified": "2022-01-20 16:58:19.587800",
  "modified_by": "Administrator",
  "module": "Agnikul",
  "name": "Sourcing Request",

@@ -116,13 +116,18 @@ frappe.ui.form.on('Sourcing Request Item', {
 	request_status: function (frm, cdt, cdn) {
 		const d = locals[cdt][cdn];
 		if (d.request_status == "Approved") {
-			if (d.project_meeting && d.preliminary_design_meeting && d.critical_design_meeting && d.fabrication_level_cdr && d.component_level_cdr && d.bom_meeting && d.component_qaqc && d.purchase_decision ) {
+			if (frm.doc.sourcing_type == "Default") {
+				if (d.project_meeting && d.preliminary_design_meeting && d.critical_design_meeting && d.fabrication_level_cdr && d.component_level_cdr && d.bom_meeting && d.component_qaqc && d.purchase_decision ) {
 			
+				}
+				else{
+					frappe.model.set_value(cdt, cdn, "request_status", "Pending");
+					frappe.throw("Please complete all the meetings before approving.");
+				}
+			} else if (frm.doc.sourcing_type == "Emergency") {
+				
 			}
-			else{
-				frappe.model.set_value(cdt, cdn, "request_status", "Pending");
-				frappe.throw("Please complete all the meetings before approving.");
-			}
+			
 		} 
 	},
 	update_specifications: function (frm, cdt, cdn) {

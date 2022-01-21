@@ -143,7 +143,7 @@ def validate_po(doc, method):
 				else:
 					frappe.throw("Please compleate the PD Meeting for the Sourcing Request")
 			if sourcing_request_doc.sourcing_type == "Emergency":
-				if sr.approval_status == "Approved":
+				if sr.request_status == "Approved":
 					pass
 				else:
 					frappe.throw("Please get the approval for sourcing request "+ sourcing_request_doc.name +" before creating the Purchase Order")

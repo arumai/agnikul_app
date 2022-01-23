@@ -4,6 +4,7 @@
 from hashlib import new
 import frappe
 from frappe.model.document import Document
+from frappe.utils.data import flt
 from pypika import NULL
 from frappe.model.mapper import get_mapped_doc
 from six import string_types
@@ -84,9 +85,10 @@ def create_material_request(source_name, target_doc=None, args=None):
 		item = frappe.get_doc("Item", data["requested_item"])
 		target.append('items', {
 			'item_code': data["requested_item"],
-			'qty': data["approved_qty"],
+			'qty': float(data["approved_qty"]) + float(data["approved_spare_qty"]),
 			'description': item.description,
 			'stock_uom': item.stock_uom,
+			'project': source.project,
 			'uom': item.stock_uom
 		})
 
@@ -147,3 +149,12 @@ def validate_po(doc, method):
 					pass
 				else:
 					frappe.throw("Please get the approval for sourcing request "+ sourcing_request_doc.name +" before creating the Purchase Order")
+
+@frappe.whitelist()
+def query_conditions(user):
+	user_roles = frappe.get_roles()
+	if "Agnikul Designer" in user_roles:
+		pass
+	else:
+		# pass
+		return """(`tabSourcing Request`.`docstatus`=1)"""

@@ -130,7 +130,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2022-01-20 16:58:19.587800",
+ "modified": "2022-01-23 21:20:41.629701",
  "modified_by": "Administrator",
  "module": "Agnikul",
  "name": "Sourcing Request",
@@ -155,7 +155,6 @@
   },
   {
    "email": 1,
-   "export": 1,
    "print": 1,
    "read": 1,
    "report": 1,
@@ -199,6 +198,18 @@
    "report": 1,
    "role": "Agnikul Designer",
    "select": 1,
+   "share": 1,
+   "write": 1
+  },
+  {
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "permlevel": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Agnikul Founder",
    "share": 1,
    "write": 1
   }

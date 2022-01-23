@@ -20,9 +20,6 @@ frappe.ui.form.on('Sourcing Request', {
 		if (!frm.doc.__islocal && frm.doc.docstatus == 1 && frappe.user.has_role('Agnikul Designer') ) {
 			frm.fields_dict["table_16"].grid.wrapper.find(".grid-add-row").hide();
 		}
-		if (!frm.doc.__islocal && frm.doc.docstatus == 1 && (frappe.user.has_role('Agnikul Operations Lead') || frappe.user.has_role('Agnikul Operations Systems Engineer')) ) {
-			$(".list-unstyled.sidebar-menu.form-attachments").hide();
-		}
 	},
 	setup: function (frm) {
 		frm.set_indicator_formatter('requested_item',

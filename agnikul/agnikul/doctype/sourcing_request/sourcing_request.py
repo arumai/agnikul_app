@@ -81,7 +81,8 @@ def create_material_request(source_name, target_doc=None, args=None):
 		elif data["sourcing_status"] == "Available In Inventory":
 			target.material_request_type = "Material Transfer"
 			
-		target.against_sourcing_request = data['name']
+		target.against_sourcing_request_item = data['name']
+		target.against_sourcing_request = source.name
 		item = frappe.get_doc("Item", data["requested_item"])
 		target.append('items', {
 			'item_code': data["requested_item"],
@@ -101,29 +102,6 @@ def create_material_request(source_name, target_doc=None, args=None):
 	return doc
 
 @frappe.whitelist()
-def create_material_request_purchase(source_name, target_doc=None):
-	def set_missing_values(source, target):
-		target.material_request_type = "Purchase"
-		target.against_sourcing_request = source.name
-		item = frappe.get_doc("Item", source.requested_item)
-		target.append('items', {
-			'item_code': source.requested_item,
-			'qty': source.qty_requested,
-			'description': item.description,
-			'stock_uom': item.stock_uom,
-			'uom': item.stock_uom
-		})
-
-	doc = get_mapped_doc("Sourcing Request", source_name, {
-		"Sourcing Request": {
-			"doctype": "Material Request"
-		}
-	}, target_doc, set_missing_values)
-
-	return doc
-
-
-@frappe.whitelist()
 def _get_employee_from_user(user):
 	employee_docname = frappe.db.exists(
 		{'doctype': 'Employee', 'user_id': user})
@@ -137,7 +115,7 @@ def validate_po(doc, method):
 	for i in doc.items:
 		if i.material_request:
 			mr = frappe.get_doc("Material Request", i.material_request)
-			sr = frappe.get_doc("Sourcing Request Item", mr.against_sourcing_request)
+			sr = frappe.get_doc("Sourcing Request Item", mr.against_sourcing_request_item)
 			sourcing_request_doc = frappe.get_doc("Sourcing Request", sr.parent)
 			if sourcing_request_doc.sourcing_type == "Default":
 				if sr.purchase_decision:

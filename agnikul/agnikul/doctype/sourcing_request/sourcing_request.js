@@ -60,6 +60,10 @@ frappe.ui.form.on('Sourcing Request', {
 			}
 		)
 		if (!frm.doc.__islocal && frm.doc.docstatus == 1) {
+			if (frappe.user.has_role('Agnikul Designer')) {
+				frm.set_df_property('identified_vendors', 'cannot_add_rows', true);
+				frm.set_df_property('identified_vendors', 'cannot_delete_rows', true);
+			}
 			if (frappe.user.has_role('Agnikul Founder')) {
 				var adf = frappe.meta.get_docfield("Sourcing Request Item","update_specifications", frm.doc.name);
 				adf.hidden = 1;

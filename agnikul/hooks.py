@@ -93,6 +93,9 @@ permission_query_conditions = {
 doc_events = {
 	"Purchase Order": {
 		"validate":	"agnikul.agnikul.doctype.sourcing_request.sourcing_request.validate_po"
+	},
+	"Material Request": {
+		"after_insert": "agnikul.agnikul.doctype.sourcing_request.sourcing_request.validate_mr"
 	}
 }
 

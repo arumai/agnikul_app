@@ -156,5 +156,53 @@ frappe.ui.form.on('Sourcing Request Item', {
 				doc: doc
 			}
 		});
+	},
+	project_meeting: function (frm, cdt, cdn) {
+		const d = locals[cdt][cdn];
+		if (d.project_meeting && !d.preliminary_design_meeting && !d.critical_design_meeting && !d.fabrication_level_cdr && !d.component_level_cdr && !d.bom_meeting && !d.component_qaqc && !d.purchase_decision) {
+			frappe.model.set_value(cdt, cdn, "request_status", "Project meeting");
+		}
+	},
+	preliminary_design_meeting: function (frm, cdt, cdn) {
+		const d = locals[cdt][cdn];
+		if (d.project_meeting && d.preliminary_design_meeting && !d.critical_design_meeting && !d.fabrication_level_cdr && !d.component_level_cdr && !d.bom_meeting && !d.component_qaqc && !d.purchase_decision) {
+			frappe.model.set_value(cdt, cdn, "request_status", "Preliminary design meeting");
+		}
+	},
+	critical_design_meeting: function (frm, cdt, cdn) {
+		const d = locals[cdt][cdn];
+		if (d.project_meeting && d.preliminary_design_meeting && d.critical_design_meeting && !d.fabrication_level_cdr && !d.component_level_cdr && !d.bom_meeting && !d.component_qaqc && !d.purchase_decision) {
+			frappe.model.set_value(cdt, cdn, "request_status", "Critical design meeting");
+		}
+	},
+	fabrication_level_cdr: function (frm, cdt, cdn) {
+		const d = locals[cdt][cdn];
+		if (d.project_meeting && d.preliminary_design_meeting && d.critical_design_meeting && d.fabrication_level_cdr && !d.component_level_cdr && !d.bom_meeting && !d.component_qaqc && !d.purchase_decision) {
+			frappe.model.set_value(cdt, cdn, "request_status", "Fabrication level CDR");
+		}
+	},
+	component_level_cdr: function (frm, cdt, cdn) {
+		const d = locals[cdt][cdn];
+		if (d.project_meeting && d.preliminary_design_meeting && d.critical_design_meeting && d.fabrication_level_cdr && d.component_level_cdr && !d.bom_meeting && !d.component_qaqc && !d.purchase_decision) {
+			frappe.model.set_value(cdt, cdn, "request_status", "Component level CDR");
+		}
+	},
+	bom_meeting: function (frm, cdt, cdn) {
+		const d = locals[cdt][cdn];
+		if (d.project_meeting && d.preliminary_design_meeting && d.critical_design_meeting && d.fabrication_level_cdr && d.component_level_cdr && d.bom_meeting && !d.component_qaqc && !d.purchase_decision) {
+			frappe.model.set_value(cdt, cdn, "request_status", "BOM Meeting");
+		}
+	},
+	component_qaqc: function (frm, cdt, cdn) {
+		const d = locals[cdt][cdn];
+		if (d.project_meeting && d.preliminary_design_meeting && d.critical_design_meeting && d.fabrication_level_cdr && d.component_level_cdr && d.bom_meeting && d.component_qaqc && !d.purchase_decision) {
+			frappe.model.set_value(cdt, cdn, "request_status", "Component QA/QC");
+		}
+	},
+	purchase_decision: function (frm, cdt, cdn) {
+		const d = locals[cdt][cdn];
+		if (d.project_meeting && d.preliminary_design_meeting && d.critical_design_meeting && d.fabrication_level_cdr && d.component_level_cdr && d.bom_meeting && d.component_qaqc && d.purchase_decision) {
+			frappe.model.set_value(cdt, cdn, "request_status", "Purchase Decision");
+		}
 	}
 });

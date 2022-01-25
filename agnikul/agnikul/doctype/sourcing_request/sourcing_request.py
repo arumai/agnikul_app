@@ -129,6 +129,14 @@ def validate_po(doc, method):
 					frappe.throw("Please get the approval for sourcing request "+ sourcing_request_doc.name +" before creating the Purchase Order")
 
 @frappe.whitelist()
+def validate_mr(doc, method):
+	if doc.against_sourcing_request:
+		sr = frappe.get_doc("Sourcing Request Item", doc.against_sourcing_request_item)
+		sr.material_request = doc.name
+		sr.save(ignore_permissions=True)
+		sr.submit()
+
+@frappe.whitelist()
 def query_conditions(user):
 	user_roles = frappe.get_roles()
 	if "Agnikul Designer" in user_roles:

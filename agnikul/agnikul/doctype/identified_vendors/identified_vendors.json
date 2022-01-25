@@ -6,7 +6,8 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "supplier"
+  "supplier",
+  "for_row_number"
  ],
  "fields": [
   {
@@ -15,12 +16,19 @@
    "in_list_view": 1,
    "label": "Supplier",
    "options": "Supplier"
+  },
+  {
+   "fieldname": "for_row_number",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "For Row Number",
+   "search_index": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2021-12-13 00:08:48.569815",
+ "modified": "2022-01-25 17:42:42.606473",
  "modified_by": "Administrator",
  "module": "Agnikul",
  "name": "Identified Vendors",

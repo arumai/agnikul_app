@@ -114,6 +114,31 @@ frappe.ui.form.on('Sourcing Request Item', {
 			frm.fields_dict["table_16"].grid.wrapper.find(".grid-remove-rows").hide();
 		}
 	},
+	sourcing_status: function (frm, cdt, cdn) {
+		const d = locals[cdt][cdn];
+		console.log(d)
+		if (d.sourcing_status == "Existing Component") {
+			frappe.confirm(__("Do you want to get all the suppliers linked to item:"+ d.requested_item +" ?"), function () {
+				frappe.call({
+					"method": "agnikul.agnikul.doctype.sourcing_request.sourcing_request.get_linked_suppliers",
+					"args": {
+						"item": d.requested_item
+					},
+					callback: function (r) {
+						console.log(r.message);
+						frm.clear_table("identified_vendors");
+						for (let i = 0; i < r.message.length; i++) {
+							const element = r.message[i];
+							var childTable = frm.add_child("identified_vendors");
+							childTable.supplier = element
+							childTable.for_row_number = d.idx
+						}
+						frm.refresh_fields("identified_vendors");
+					}
+				})
+			})
+		}
+	},
 	request_status: function (frm, cdt, cdn) {
 		const d = locals[cdt][cdn];
 		if (d.request_status == "Approved") {

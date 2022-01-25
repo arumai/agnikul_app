@@ -144,3 +144,19 @@ def query_conditions(user):
 	else:
 		# pass
 		return """(`tabSourcing Request`.`docstatus`=1)"""
+
+@frappe.whitelist()
+def get_linked_suppliers(item):
+	item_doc = frappe.get_doc("Item", item)
+	suppliers = frappe.db.get_all("Purchase Order",
+		fields = ["supplier"],
+		filters = [
+			["Purchase Order Item", "item_code", "=", item_doc.name]
+	])
+	suppliersarray = []
+	for i in suppliers:
+		suppliersarray.append(i.supplier)
+
+	
+	
+	return list(set(suppliersarray))
